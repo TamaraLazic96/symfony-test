@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if user %}
+        <h5>Congratulations</h5>
+        <p>Welcome here!! Sign in here <a href="{{ path('security_login') }}">link</a></p>
+    {% else %}
+        <p>Something went wrong.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+swiftmailer:
+    url: '%env(MAILER_URL)%'
+    spool: { type: 'memory' }
+    #spool:
+        #type: file
+        #path: '%kernel.project_dir%/var/spool'
+# this would generate files in that directory - without sending them
+# php bin/console swiftmailer:spool:send --env=prod --message-limit-10
+# spool is like a queue that you put items too
+# in prod we will configure cron job - to send

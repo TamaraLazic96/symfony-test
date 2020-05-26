@@ -1,5 +1,7 @@
 doctrine_migrations:
+    # witch directory you want to keep this migrations
     dir_name: '%kernel.project_dir%/src/Migrations'
     # namespace is arbitrary but should be different from App\Migrations
     # as migrations classes should NOT be autoloaded
+    # namespace for that class migrations
     namespace: DoctrineMigrations

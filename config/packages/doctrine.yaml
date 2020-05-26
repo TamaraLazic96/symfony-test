@@ -1,18 +1,37 @@
 doctrine:
     dbal:
+        driver: 'pdo_mysql'
+        server_version: '5.7'
+        charset: utf8mb4
         url: '%env(resolve:DATABASE_URL)%'
+        schema_filter: ~^(?!sessions)~
 
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
         #server_version: '5.7'
     orm:
+        # '%kernel.debug%' -- used when entities have relations - table relations
+        # set to true because we are in debug mode
+        # false in prod -- first warm up cache
+        # Auto generated if debug is true, otherwise
+        # php app/console cache:warmup --env=prod --no-debug
         auto_generate_proxy_classes: true
+        # Rules for generating table names, field names
+        # by default it is the_table_name
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        # Automatically look for mapping configuration
+        # how to convert Classes to tables and fields
         auto_mapping: true
+        # where should look for mapping definitions
         mappings:
+            # Entity mapping for App namespace
             App:
                 is_bundle: false
+                # Is of type annotation (could also be XML, YAML)
                 type: annotation
+                # Entities could be found in directory
                 dir: '%kernel.project_dir%/src/Entity'
+                # Entity namespace prefix is
                 prefix: 'App\Entity'
+                # Shorten alias is App, example: App:Post, App:User
                 alias: App
