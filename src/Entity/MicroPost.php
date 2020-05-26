@@ -24,9 +24,15 @@ class MicroPost
     /**
      * @ORM\Column(type="string", length=280)
      * @Assert\NotBlank()
-     * @Assert\Length(min=10, minMessage="This is not good! Try again later :P")
+     * @Assert\Length(min=10, minMessage="You need to writte a longer post.")
      */
     private $text;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
+     */
+    private $title;
 
     /**
      * @ORM\Column(type="datetime")
@@ -126,5 +132,21 @@ class MicroPost
             return;
 
         $this->likedBy->add($user);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title): void
+    {
+        $this->title = $title;
     }
 }

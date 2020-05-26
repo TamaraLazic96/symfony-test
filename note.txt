@@ -13,10 +13,10 @@ ASSETIC -- written in PHP
 it is build on top of webpack
 
 ENCORE
-writen in nodejs
-can be used in any project -- grat with symfony
-Makes integration the power of Webpack into your Symfony appllication simpler
-
+written in nodejs
+can be used in any project -- great with symfony
+Makes integration the power of Webpack into your Symfony application simpler
+npm run dev
 
 There is no Symfony component for DB
 It tightly integrated with 3rd party library Doctrine
@@ -206,6 +206,25 @@ composer require --dev symfony/phpunit-bridge
 
 ./vendor/bin/simple-phpunit
 php bin/phpunit
+
+Form -- how to say what entity to use: for microPost: 'data_class' => MicroPost::class
+Example:
+$resolver->setDefaults([
+    'data_class' => MicroPost::class
+]);
+In twig.yaml file you configure for form (FormType) to use bootstrap.
+Example:
+form_themes: ['bootstrap_4_layout.html.twig']
+
+
+
+
+
+
+
+
+
+
 
 
 

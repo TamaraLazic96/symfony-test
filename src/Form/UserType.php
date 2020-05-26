@@ -14,24 +14,29 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 
+/**
+ * Class UserType
+ * @package App\Form
+ */
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('username', TextType::class)
+        $builder
+            ->add('username', TextType::class)
             ->add('email', EmailType::class)
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Repeated Password']
             ])
-        ->add('fullName', TextType::class)
-        ->add('termsAgreed', CheckboxType::class, [
-            'mapped' => false,
-            'constraints' => new IsTrue(),
-            'label' => 'I agree to T&C.'
-        ])
-        ->add('Register', SubmitType::class);
+            ->add('fullName', TextType::class)
+            ->add('termsAgreed', CheckboxType::class, [
+                'mapped' => false,
+                'constraints' => new IsTrue(),
+                'label' => 'I agree to T&C.'
+            ])
+            ->add('Register', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
