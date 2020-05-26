@@ -204,7 +204,8 @@ Symfony uses PHPUnit framework
 - should replicate the original dir structure of your class being tested
 composer require --dev symfony/phpunit-bridge
 
-
+./vendor/bin/simple-phpunit
+php bin/phpunit
 
 
 
