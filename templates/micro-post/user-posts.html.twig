@@ -12,7 +12,8 @@
                 {# if is_granted('ROLE_USER') {and, or} #}
                 {% if user != app.user %}
                     {% if user.followers.contains(app.user) == false %}
-                        <a href="{{ path('following_follow', {'id': user.id}) }}" class="btn btn-outline-primary">Follow</a>
+                        <a href="{{ path('following_follow', {'id': user.id}) }}"
+                           class="btn btn-outline-primary">Follow</a>
                     {% else %}
                         <a href="{{ path('following_unfollow', {'id': user.id}) }}" class="btn btn-outline-primary">Unfollow</a>
                     {% endif %}
@@ -22,31 +23,39 @@
     </div>
     <div class="card-group py-2">
         <div class="card">
-            <div class="card-body">
-                <h5>Followers</h5>
-            </div>
+            <a href="{{ path('user_followers', {'username': user.username}) }}">
+                <div class="card-body">
+                    <h5 class="text-center">Followers</h5>
+                    <p class="full-width text-center">
+                        {{ user.followers|length }}
+                    </p>
+                </div>
+            </a>
             <ul class="list-group list-group-flush">
-                {% for follower in user.followers %}
+                {#{% for follower in user.followers %}
                     <li class="list-group-item">
                         <a href="{{ path('micro_post_user', {'username': follower.username}) }}">
                             @{{ follower.username }}
                         </a>
                     </li>
-                {% endfor %}
+                {% endfor %}#}
             </ul>
         </div>
         <div class="card">
-            <div class="card-body">
-                <h5>Following</h5>
-            </div>
+            <a href="{{ path('user_following', {'username': user.username}) }}">
+                <div class="card-body">
+                    <h5 class="text-center">Following</h5>
+                    <p class="full-width text-center">{{ user.following|length }}</p>
+                </div>
+            </a>
             <ul class="list-group list-group-flush">
-                {% for following in user.following %}
+                {#{% for following in user.following %}
                     <li class="list-group-item">
                         <a href="{{ path('micro_post_user', {'username': following.username}) }}">
                             @{{ following.username }}
                         </a>
                     </li>
-                {% endfor %}
+                {% endfor %}#}
             </ul>
         </div>
     </div>

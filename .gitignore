@@ -19,6 +19,5 @@
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
-npm-debug.log
-yarn-error.log
+note.txt
 ###< symfony/webpack-encore-bundle ###

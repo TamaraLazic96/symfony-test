@@ -5,71 +5,78 @@
 
     {% set isLiked = post.getLikedBy.contains(app.user) %}
 
-    <div class="pt-2">
-        <button style="display: {% if not isLiked %}block{% else %}none{% endif %}"
-                class="btn btn-outline-secondary btn-sm" id="like">
-            Like
-            <span class="badge badge-light" id="like-badge">
+    <div class="row">
+        <div class="col-12 mt-2 mb-2">
+            {{ post.text }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="pt-2 col-12">
+            <button style="display: {% if not isLiked %}block{% else %}none{% endif %}"
+                    class="btn btn-outline-secondary btn-sm" id="like">
+                Like
+                <span class="badge badge-light" id="like-badge">
                 {{ post.getLikedBy.count }}
             </span>
-        </button>
+            </button>
 
-        <button style="display: {% if isLiked %}block{% else %}none{% endif %}"
-                class="btn btn-outline-secondary btn-sm" id="unlike">
-            Unlike
-            <span class="badge badge-light" id="unlike-badge">
+            <button style="display: {% if isLiked %}block{% else %}none{% endif %}"
+                    class="btn btn-outline-secondary btn-sm" id="unlike">
+                Unlike
+                <span class="badge badge-light" id="unlike-badge">
                 {{ post.getLikedBy.count }}
             </span>
-        </button>
+            </button>
+        </div>
     </div>
 
 {% endblock body %}
 
 {% block javascripts %}
-{{ parent() }}
-<script>
-let likeButton = document.getElementById('like');
-let unlikeButton = document.getElementById('unlike');
+    {{ parent() }}
+    <script>
+        let likeButton = document.getElementById('like');
+        let unlikeButton = document.getElementById('unlike');
 
-addOnClick(
-    likeButton,
-    unlikeButton,
-    document.getElementById('unlike-badge'),
-    '{{ path('likes_like', {'id': post.id}) }}'
-);
+        addOnClick(
+            likeButton,
+            unlikeButton,
+            document.getElementById('unlike-badge'),
+            '{{ path('likes_like', {'id': post.id}) }}'
+        );
 
-addOnClick(
-    unlikeButton,
-    likeButton,
-    document.getElementById('like-badge'),
-    '{{ path('likes_unlike', {'id': post.id}) }}'
-);
+        addOnClick(
+            unlikeButton,
+            likeButton,
+            document.getElementById('like-badge'),
+            '{{ path('likes_unlike', {'id': post.id}) }}'
+        );
 
-function switchButtons(button, oppositeButton){
-    button.disabled = false;
-    button.style.display = 'none';
-    oppositeButton.style.display = 'block';
-}
+        function switchButtons(button, oppositeButton) {
+            button.disabled = false;
+            button.style.display = 'none';
+            oppositeButton.style.display = 'block';
+        }
 
-function addOnClick(button, oppositeButton, likeCount, path){
-    button.addEventListener('click', function(event){
-        {% if not app.user %}
-            return window.location.replace('{{ path('user_register') }}')
-        {% endif %}
+        function addOnClick(button, oppositeButton, likeCount, path) {
+            button.addEventListener('click', function (event) {
+                {% if not app.user %}
+                return window.location.replace('{{ path('user_register') }}')
+                {% endif %}
 
-        button.disabled = true;
+                button.disabled = true;
 
-        fetch(path, {'credentials': 'include'}).then(function(response){
-            response.json().then(function(json) {
-              likeCount.innerText = json.count;
-              switchButtons(button, oppositeButton)
+                fetch(path, {'credentials': 'include'}).then(function (response) {
+                    response.json().then(function (json) {
+                        likeCount.innerText = json.count;
+                        switchButtons(button, oppositeButton)
+                    });
+                }).catch(function () {
+                    switchButtons(button, oppositeButton);
+                });
+
+                event.preventDefault();
             });
-        }).catch(function () {
-            switchButtons(button, oppositeButton);
-        });
-
-        event.preventDefault();
-    });
-}
-</script>
+        }
+    </script>
 {% endblock %}

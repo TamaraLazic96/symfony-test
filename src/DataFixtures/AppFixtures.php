@@ -41,15 +41,42 @@ class AppFixtures extends Fixture
     ];
 
     private const POST_TEXT = [
-        'Hello, how are you?',
-        'It\'s nice sunny weather today',
-        'I need to buy some ice cream!',
-        'I wanna buy a new car',
-        'There\'s a problem with my phone',
-        'I need to go to the doctor',
-        'What are you up to today?',
-        'Did you watch the game yesterday?',
-        'How was your day?'
+        [
+            'title' => 'Hello',
+            'post' => 'Hello, how are you?'
+        ],
+        [
+            'title' => 'Weather',
+            'post' => 'It\'s nice sunny weather today'
+        ],
+        [
+            'title' => 'Ice cream!',
+            'post' => 'I need to buy some ice cream!',
+        ],
+        [
+            'title' => 'Car',
+            'post' => 'I wanna buy a new car',
+        ],
+        [
+            'title' => 'Phone',
+            'post' => 'There\'s a problem with my phone',
+        ],
+        [
+            'title' => 'Doctor',
+            'post' => 'I need to go to the doctor',
+        ],
+        [
+            'title' => 'Today?',
+            'post' => 'What are you up to today?',
+        ],
+        [
+            'title' => 'Game',
+            'post' => 'Did you watch the game yesterday?',
+        ],
+        [
+            'title' => 'Day?',
+            'post' => 'How was your day?',
+        ]
     ];
 
     public function __construct(UserPasswordEncoderInterface $userPasswordEncoder)
@@ -67,7 +94,8 @@ class AppFixtures extends Fixture
     {
         for ($i = 0; $i < 30; $i++) {
             $microPost = new MicroPost();
-            $microPost->setText(self::POST_TEXT[rand(0, count(self::POST_TEXT) - 1)]);
+            $microPost->setText(self::POST_TEXT[rand(0, count(self::POST_TEXT) - 1)]['post']);
+            $microPost->setTitle(self::POST_TEXT[rand(0, count(self::POST_TEXT) - 1)]['title']);
             $date = new \DateTime();
             $date->modify('-'.rand(0, 10).' day');
             $microPost->setTime($date);

@@ -9,3 +9,17 @@ body {
 .container {
     width: 590px;
 }
+
+.post-box{
+    display: -webkit-box;
+}
+
+.post-box .post-letters{
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+}
+.post-box .post-letters span{
+    width: 100%;
+}

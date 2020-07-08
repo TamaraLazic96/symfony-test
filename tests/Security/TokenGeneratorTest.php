@@ -7,7 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 class TokenGeneratorTest extends TestCase
 {
-    public function testTokenGeneration(){
+    public function testTokenGeneration()
+    {
         $tokenGen = new TokenGenerator();
         $token = $tokenGen->getRandomSecureToken(30);
         //$token[15] = ')';
