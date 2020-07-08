@@ -216,7 +216,7 @@ In twig.yaml file you configure for form (FormType) to use bootstrap.
 Example:
 form_themes: ['bootstrap_4_layout.html.twig']
 
-
+php bin/console debug:router
 
 
 

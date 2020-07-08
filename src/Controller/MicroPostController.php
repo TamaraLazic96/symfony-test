@@ -7,14 +7,12 @@ use App\Entity\User;
 use App\Form\MicroPostType;
 use App\Repository\MicroPostRepository;
 use App\Repository\UserRepository;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -106,29 +104,6 @@ class MicroPostController extends AbstractController
         $post->setUser($this->getUser());
 
         return $this->saveUpdate($post, $request);
-    }
-
-    /**
-     * @Route("/user/{username}", name="micro_post_user")
-     * @param User $userEntity
-     * @return Response
-     */
-    public function userPosts(User $userEntity)
-    {
-        $posts = $this->microPostRepository->findBy(
-            ['user' => $userEntity],
-            ['time' => 'DESC']
-        );
-
-        // why this does not work
-        //$posts = $userEntity->getPosts();
-
-        $html = $this->render('micro-post/user-posts.html.twig', [
-            'posts' => $posts,
-            'user' => $userEntity
-        ]);
-
-        return new Response($html);
     }
 
     /**

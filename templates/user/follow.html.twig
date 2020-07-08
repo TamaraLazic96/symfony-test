@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for follow in followUsers %}
+        <div class="row">
+            <div class="col-12 mt-2 mb-2">
+                {{ follow.username }}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock body %}
