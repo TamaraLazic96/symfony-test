@@ -19,5 +19,5 @@
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
-note.txt
+/note.txt
 ###< symfony/webpack-encore-bundle ###
