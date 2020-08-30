@@ -50,12 +50,10 @@ class MicroPostController extends AbstractController
             $posts = $this->microPostRepository->findAll();
         }
 
-        $html = $this->render('micro-post/index.html.twig', [
+        return $this->render('micro-post/index.html.twig', [
             'posts' => $posts,
             'users' => $users
         ]);
-
-        return new Response($html);
     }
 
     /**
@@ -116,10 +114,9 @@ class MicroPostController extends AbstractController
         //$post = $this->microPostRepository->find($id);
         // if we pass all post we do not need this upper query
 
-        return new Response(
-            $this->render('micro-post/single.html.twig', [
-                'post' => $post
-            ]));
+        return $this->render('micro-post/single.html.twig', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -139,10 +136,8 @@ class MicroPostController extends AbstractController
             return new RedirectResponse($this->generateUrl('micro_post_index'));
         }
 
-        return new Response(
-            $this->render('micro-post/add.html.twig', [
-                'form' => $form->createView()
-            ])
-        );
+        return $this->render('micro-post/add.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }

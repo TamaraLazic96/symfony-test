@@ -18,12 +18,11 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {
-        return new Response(
+        return
             $this->render('security/login.html.twig', [
                 'last_username' => $authenticationUtils->getLastUsername(),
                 'error' => $authenticationUtils->getLastAuthenticationError()
-            ])
-        );
+            ]);
     }
 
     /**
@@ -37,6 +36,7 @@ class SecurityController extends AbstractController
      * @Route("/confirm/{token}", name="security_confirm")
      * @param string $token
      * @param UserRepository $userRepository
+     * @return Response
      */
     public function confirm(string $token, UserRepository $userRepository)
     {
@@ -45,14 +45,14 @@ class SecurityController extends AbstractController
             'confirmationToken' => $token
         ]);
 
-        if($user !== null){
+        if ($user !== null) {
             $user->setEnabled(true);
             $user->setConfirmationToken('');
             $this->getDoctrine()->getManager()->flush();
         }
 
-        return new Response($this->render('security/confirmation.html.twig', [
+        return $this->render('security/confirmation.html.twig', [
             'user' => $user
-        ]));
+        ]);
     }
 }
