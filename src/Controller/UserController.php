@@ -29,12 +29,11 @@ class UserController extends AbstractController
      */
     public function userFollowers(User $user)
     {
-        return new Response(
+        return
             $this->render('user/follow.html.twig', [
                 'followUsers' => $user->getFollowers(),
                 'user' => $user
-            ])
-        );
+            ]);
     }
 
     /**
@@ -44,12 +43,11 @@ class UserController extends AbstractController
      */
     public function userFollowing(User $user)
     {
-        return new Response(
+        return
             $this->render('user/follow.html.twig', [
                 'followUsers' => $user->getFollowing(),
                 'user' => $user
-            ])
-        );
+            ]);
     }
 
     /**
@@ -64,11 +62,10 @@ class UserController extends AbstractController
             ['time' => 'DESC']
         );
 
-        return new Response(
+        return
             $this->render('micro-post/user-posts.html.twig', [
                 'posts' => $posts,
                 'user' => $user
-            ])
-        );
+            ]);
     }
 }

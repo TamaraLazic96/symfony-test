@@ -62,6 +62,7 @@ class BlogController extends AbstractController {
     /**
      * @Route("/show/{id}", name="blog_show")
      * @param $id
+     * @return Response
      */
     public function show($id) {
         $posts = $this->session->get('posts');
@@ -69,11 +70,9 @@ class BlogController extends AbstractController {
             throw new NotFoundHttpException('Post Not Found');
         }
 
-        $html = $this->render('blog/post.html.twig', [
+        return $this->render('blog/post.html.twig', [
             'id' => $id,
             'post' => $posts[$id]
         ]);
-
-        return new Response($html);
     }
 }
