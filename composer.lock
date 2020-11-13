@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e06930ba631242abb84da472995867ff",
+    "content-hash": "06c28a8b998fdbe3bbfc26af54106a68",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -2094,16 +2094,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v5.6.1",
+            "version": "v5.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "430d14c01836b77c28092883d195a43ce413ee32"
+                "reference": "ced361d17ef6a52af90708e081c5ad900dc45a11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/430d14c01836b77c28092883d195a43ce413ee32",
-                "reference": "430d14c01836b77c28092883d195a43ce413ee32",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/ced361d17ef6a52af90708e081c5ad900dc45a11",
+                "reference": "ced361d17ef6a52af90708e081c5ad900dc45a11",
                 "shasum": ""
             },
             "require": {
@@ -2166,7 +2166,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2020-08-25T19:10:18+00:00"
+            "time": "2020-08-25T10:33:58+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
